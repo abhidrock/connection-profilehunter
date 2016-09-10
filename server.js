@@ -262,8 +262,11 @@ var SampleApp = function() {
                   fileName = picId.concat(".",fileNm[1]);
                   console.log("fileName :" + fileName);
                   fstream = fs.createWriteStream(__dirname + '/files/' + fileName);
+                  console.log("File stream "+fstream);
                   file.pipe(fstream);
+                  console.log("File Pipe");
                   fstream.on('close', function () {
+                      console.log("File stream close back");
                       res.redirect('back');
                   });
               });
