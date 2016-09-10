@@ -3,6 +3,15 @@
 var express = require('express');
 var app = express();
 var fs      = require('fs');
+var mongojs = require('mongojs');
+var dbName = "/connection";
+var connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +  process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" + process.env.OPENSHIFT_MONGODB_DB_HOST + dbName;
+var db = mongojs(connection_string);
+
+var bodyParser = require('body-parser');
+
+var nodemailer = require('nodemailer');
+
 
 /**
  *  Define the sample application.
@@ -93,9 +102,31 @@ var SampleApp = function() {
      *  Create the routing table entries + handlers for the application.
      */
     self.createRoutes = function() {
-        self.routes = {
-
+        self.routes['/profiles'] = function(req, res) {
+          console.log("Fetching all profiles from database....");
+          db.collection('expertprofiles').find(function(err,docs){
+              console.log(docs);
+              res.json(docs);
+          });
          };
+
+        self.routes['/create'] = function(req, res) {
+          console.log("Creating profile....");
+          console.log(req.body);
+          db.expertprofiles.insert(req.body, function(err, doc){
+              res.json(doc);
+              console.log(err);
+          });
+        };
+
+        self.routes['/getProfile/:id'] = function(req, res) {
+          console.log("Fetch selected profile");
+          var id = req.params.id;
+          db.expertprofiles.findOne({_id: mongojs.ObjectId(id)}, function (err, doc) {
+              res.json(doc);
+              console.log(err);
+          });
+        };
 
         self.routes['/asciimo'] = function(req, res) {
             var link = "http://i.imgur.com/kmbjB.png";
@@ -119,10 +150,26 @@ var SampleApp = function() {
         self.app = app;
         self.app.use(express.static(__dirname));
 
+        self.app.use(function(req, res, next) {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+            res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            next();
+        });
+
+        self.app.use(bodyParser.json());
+
+        self.app.get('/profiles', self.routes['/profiles']);
+
+        self.app.post('/create', self.routes['/create']);
+
+        self.app.get('/getProfile/:id', self.routes['/getProfile/:id']);
+
           //  Add handlers for the app (from the routes).
-        for (var r in self.routes) {
+        /*for (var r in self.routes) {
             self.app.get(r, self.routes[r]);
-        }
+        }*/
     };
 
 
