@@ -25,6 +25,10 @@ var SampleApp = function() {
         self.ipaddress = process.env.OPENSHIFT_NODEJS_IP;
         self.port      = process.env.OPENSHIFT_NODEJS_PORT || 3055;
 
+        server.listen(self.port, self.ipaddress, function () {
+          console.log( "Listening on " + self.ipaddress + ", server_port " + self.port )
+        });
+
         if (typeof self.ipaddress === "undefined") {
             //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
             //  allows us to run/test the app locally.
@@ -120,7 +124,7 @@ var SampleApp = function() {
         self.createRoutes();
         self.app = express.createServer();
 
-        //  Add handlers for the app (from the routes).
+          //  Add handlers for the app (from the routes).
         for (var r in self.routes) {
             self.app.get(r, self.routes[r]);
         }
