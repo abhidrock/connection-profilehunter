@@ -113,7 +113,7 @@ var SampleApp = function() {
         self.routes['/create'] = function(req, res) {
           console.log("Creating profile....");
           console.log(req.body);
-          db.expertprofiles.insert(req.body, function(err, doc){
+          db.collection('expertprofiles').insert(req.body, function(err, doc){
               res.json(doc);
               console.log(err);
           });
@@ -122,7 +122,7 @@ var SampleApp = function() {
         self.routes['/getProfile/:id'] = function(req, res) {
           console.log("Fetch selected profile");
           var id = req.params.id;
-          db.expertprofiles.findOne({_id: mongojs.ObjectId(id)}, function (err, doc) {
+          db.collection('expertprofiles').findOne({_id: mongojs.ObjectId(id)}, function (err, doc) {
               res.json(doc);
               console.log(err);
           });
