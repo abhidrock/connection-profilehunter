@@ -1,6 +1,7 @@
 #!/bin/env node
 //  OpenShift sample Node application
 var express = require('express');
+var app = express();
 var fs      = require('fs');
 
 
@@ -115,7 +116,8 @@ var SampleApp = function() {
      */
     self.initializeServer = function() {
         self.createRoutes();
-        self.app = express.createServer();
+        //self.app = express.createServer();
+        self.app = app;
 
           //  Add handlers for the app (from the routes).
         for (var r in self.routes) {
