@@ -1,0 +1,8 @@
+{
+  name: 'Rahul',
+  skills: 'Java',
+  experience: '3.5',
+  currentproject: 'Avril',
+  profile: 'Developer',
+  role: 'SSE'
+}

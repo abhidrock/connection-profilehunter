@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Connection</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"  media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/common.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/master.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/flat-ui.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <!--<link rel="stylesheet" href="css/bootstrap.css" >-->
+    <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="controllers/profileController.js"></script>
+    <script src="js/angular-animate.js"></script>
+  </head>
+  <body ng-app="userApp" ng-controller="userCtrl" data-ng-init="init(1)">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-inverse" style="box-shadow: 0px 1px 5px #222222;">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#appNavBar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#appNavBarSearch">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+       <!-- &lt;!&ndash; navBar For Multi Search &ndash;&gt;
+        <div class="navbar-right">
+          <form class="form-inline">
+            <div class="form-group">
+              <div class="col-md-3"><label style="color: ivory"><i class="fa fa-question-circle fa-fw" ></i> Profile List</label></div>
+              <div class="col-md-4">
+                <select class="form-control" ng-model="selectedProfile" ng-options="expert.profile for expert in experts">
+                  <option value="">Select</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-3"><label style="color: ivory"><i class="fa fa-question-circle fa-fw"></i> Experience List</label></div>
+              <div class="col-md-4">
+                <select class="form-control" ng-model="selectedExp" ng-options="expert.experience for expert in experts | filter : filterExpression">
+                  <option value="">Select</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>-->
+
+        <div class="collapse navbar-collapse" id="appNavBar">
+          <form class="navbar-form navbar-right" role="search">
+          <div class="form-group input-group">
+            <!--<div class="input-group-btn" >
+              <select class="form-control btn-success" ng-model="property">
+                <option>name</option>
+                <option>skills</option>
+                <option>profile</option>
+              </select>
+            </div>
+            <input class="form-control" placeholder="Enter here" ng-model="search[property]">-->
+
+
+            <input type="text" class="form-inline" placeholder="Search Any.." ng-model="expert.$" > :
+            <input type="text" class="form-inline" placeholder="Profile only.." ng-model="expert.profile"> :
+            <input type="text" class="form-inline" placeholder="Exprience only.." ng-model="expert.experience"> :
+            <!--<select class="form-inline" ng-model="expert.experience" ng-options="expert.experience for expert in experts | filter : expert.profile">
+              <option value="">Select</option>
+            </select>-->
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#AdvSearchModal">
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+            </span>
+           <!-- <p class="navbar-right">
+              <button class="btn btn-block" data-toggle="modal" data-target="#AdvSearchModal" ng-click="#">Advance Search</button>
+            </p>-->
+         </div>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+    <div id="wrapper">
+      <div class="overlay"></div>
+
+      <!-- Sidebar -->
+      <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+        <ul class="nav sidebar-nav">
+          <li class="sidebar-brand">
+            <a href="#">Connection</a>
+          </li>
+          <div class="row">
+            <div class="profile-header-container">
+    		        <div class="profile-header-img">
+                  <img class="img-circle" src="images/admin.jpg" />
+                </div>
+              </div>
+	        </div>
+          <li>
+            <a href="index.htm"><i class="fa fa-fw fa-home"></i> Home</a>
+          </li>
+          <li>
+            <a href="post.html" ><i class="fa fa-fw fa-folder"></i> Post Requirement</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-fw fa-file-o"></i> Second page</a>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li class="dropdown-header">Dropdown heading</li>
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li><a href="#">Separated link</a></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- /#sidebar-wrapper -->
+
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+              </button>
+              <!-- Content -->
+        <div class="container text-center">
+          <!--<div ng-repeat="expert in experts | filter : {profile:expert.profile, experience:expert.experience} " class="col-lg-2 col-md-4 col-xs-6 thumb animate" >-->
+          <div ng-repeat="expert in experts | filter : expert " class="col-lg-2 col-md-4 col-xs-6 thumb animate" >
+              <div class="well" >
+               <img src="files/{{expert._id}}.jpg"  onError="this.onError=null;this.src='images/default_profile.jpg';" class="img-circle" height="100" width="100" alt="Avatar" />
+                  <br>
+                <a  ng-href="expert.htm?id:{{expert._id}}" style="color:#000000">{{expert.name}}</a>
+                <br>
+                <a style="color:#000000">{{expert.experience}}</a>
+                <br>
+              </div>
+            </div>
+          </div>
+      </div>
+      <!-- /#page-content-wrapper data-ng-init="getImageOnLoad(expert._id)"-->
+    </div>
+    <!-- /#wrapper -->
+    <!-- Modal Advance search -->
+    <div id="AdvSearchModal" class="modal fade " role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Advance Search</h4>
+          </div>
+          <form class="form-inline">
+            <div class="modal-body">
+
+            <div class="form-group">
+              <div class="col-md-4"><label><i class="fa fa-question-circle fa-fw" ></i>Profile</label></div>
+              <div class="col-md-3">
+                <select class="form-control" ng-model="selectedProfile" ng-options="expert.profile for expert in experts">
+                  <option value="">Select</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-5"><label><i class="fa fa-question-circle fa-fw"></i>Experience</label></div>
+              <div class="col-md-3">
+                <select class="form-control" ng-model="selectedSearch" ng-options="expert.experience for expert in experts | filter : filterExpression">
+                  <option value="">Select</option>
+                </select>
+              </div>
+            </div>
+              <div class="form-group"></div>
+            <div class="form-group input-group">
+              <div class="input-group-btn" >
+                <select class="form-control btn-success" ng-model="property">
+                  <option>name</option>
+                  <option>skills</option>
+                  <option>profile</option>
+                </select>
+              </div>
+              <input class="form-control" placeholder="Enter here" ng-model="search[property]">
+
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-default btn-primary" type="submit" ng-click="searchProfile(selectedSearch._id)" data-dismiss="modal">Submit </button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- End of Advance search -->
+  </body>
+</html>

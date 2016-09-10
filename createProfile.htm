@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html ng-app = "manageProfile">
+<head>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="controllers/manageProfileController.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <title>Expert Hunter-Create Profile</title>
+</head>
+<body class="container"  ng-controller="manageProfileControl">
+    <h1 class="text-info" style="font-family:'Bodoni MT Black'">Expert Profiles IN Unity Connection</h1>
+        <!-- create our form -->
+    <div>Response : {{response}}</div>
+        <form name="expertForm" action="expert.htm" novalidate>
+           <div class="form-group">
+               <label>Full Name :</label>
+               <input type="text" name="name" class="form-control"
+                      ng-model="expert.name"
+                      ng-minlength="5"
+                      ng-maxlength="10"
+                      required>
+               <!-- ngMessages goes here -->
+               <div class="help-block" ng-messages="expertForm.name.$error" ng-show="expertForm.name.$touched">
+                   <div ng-messages-include="views/messages.html"></div>
+               </div>
+           </div>
+            <div class="form-group">
+                <label>Skills :</label>
+                <input type="text" name="skills" class="form-control"
+                       ng-model="expert.skills"
+                       ng-minlength="2"
+                       ng-maxlength="10"
+                       required>
+                <!-- ngMessages goes here -->
+                <div class="help-block" ng-messages="expertForm.skills.$error" ng-show="expertForm.skills.$touched">
+                    <div ng-messages-include="views/messages.html"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Experience :</label>
+                <input type="text" name="experience" class="form-control"
+                       ng-model="expert.experience"
+                       ng-minlength="1"
+                       ng-maxlength="5"
+                       required>
+                <!-- ngMessages goes here -->
+                <div class="help-block" ng-messages="expertForm.experience.$error" ng-show="expertForm.experience.$touched">
+                    <div ng-messages-include="views/messages.html"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Current Project :</label>
+                <input type="text" name="currentproject" class="form-control"
+                       ng-model="expert.currentproject"
+                       ng-minlength="5"
+                       ng-maxlength="15"
+                       required>
+                <!-- ngMessages goes here -->
+                <div class="help-block" ng-messages="expertForm.currentproject.$error" ng-show="expertForm.currentproject.$touched">
+                    <div ng-messages-include="views/messages.html"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Profile :</label>
+                <input type="text" name="profile" class="form-control"
+                       ng-model="expert.profile"
+                       ng-minlength="5"
+                       ng-maxlength="15"
+                       required>
+                <!-- ngMessages goes here -->
+                <div class="help-block" ng-messages="expertForm.profile.$error" ng-show="expertForm.profile.$touched">
+                    <div ng-messages-include="views/messages.html"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Role :</label>
+                <input type="text" name="role" class="form-control"
+                       ng-model="expert.role"
+                       ng-minlength="5"
+                       ng-maxlength="15"
+                       required>
+                <!-- ngMessages goes here -->
+                <div class="help-block" ng-messages="expertForm.role.$error" ng-show="expertForm.role.$touched">
+                    <div ng-messages-include="views/messages.html"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-danger" ng-click="addProfile()">Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="expertForm">Cancel</button>
+            </div>
+
+            <!--<button class="btn btn-primary" ng-click="addProfile()">Add Contact</button>
+            <td><button class="btn btn-primary" ng-click="update()">Update</button>&nbsp;&nbsp;<button class="btn btn-info" ng-click="deselect()">Clear</button></td>
+-->
+            </form>
+</body>
+</html>
+
