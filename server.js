@@ -102,6 +102,9 @@ var SampleApp = function() {
      *  Create the routing table entries + handlers for the application.
      */
     self.createRoutes = function() {
+
+        self.routes = { };
+
         self.routes['/profiles'] = function(req, res) {
           console.log("Fetching all profiles from database....");
           db.collection('expertprofiles').find(function(err,docs){
