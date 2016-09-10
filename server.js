@@ -23,11 +23,7 @@ var SampleApp = function() {
     self.setupVariables = function() {
         //  Set the environment variables we need.
         self.ipaddress = process.env.OPENSHIFT_NODEJS_IP;
-        self.port      = process.env.OPENSHIFT_NODEJS_PORT || 3055;
-
-        server.listen(self.port, self.ipaddress, function () {
-          console.log( "Listening on " + self.ipaddress + ", server_port " + self.port )
-        });
+        self.port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
         if (typeof self.ipaddress === "undefined") {
             //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
@@ -98,7 +94,7 @@ var SampleApp = function() {
      */
     self.createRoutes = function() {
         self.routes = {
-            
+
          };
 
         self.routes['/asciimo'] = function(req, res) {
