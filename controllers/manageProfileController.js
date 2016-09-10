@@ -8,7 +8,7 @@ var manageProfileControl = function ($scope, $http){
     console.log("Manage Profile controller");
 
     $scope.update = function() {
-        $http.put('http://localhost:3033/create' + $scope.expert._id, $scope.expert).success(function (response) {
+        $http.put('http://connection-profilehunter.rhcloud.com/create' + $scope.expert._id, $scope.expert).success(function (response) {
             console.log("profile created");
             $scope.response = response;
             window.location.href = '/ExpertProfileProject/expert.htm';
@@ -17,7 +17,7 @@ var manageProfileControl = function ($scope, $http){
 
     $scope.edit = function (id) {
         console.log(id);
-        $http.get('http://localhost:3033/getProfile/' + id).success(function (response) {
+        $http.get('http://connection-profilehunter.rhcloud.com/getProfile/' + id).success(function (response) {
             $scope.expert = response;
         });
 

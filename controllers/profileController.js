@@ -63,7 +63,7 @@ app.controller('userCtrl', function($scope, $http) {// , $rootElement) {
   $scope.experts = data;
   $scope.init = function(value) {
     if(value == 1) {
-      $http.get("http://localhost:3033/profiles").success(function (response) {
+      $http.get("http://connection-profilehunter.rhcloud.com/profiles").success(function (response) {
         //$scope.message = response;
         console.log("profiles retrieved");
         $scope.experts = response;
@@ -76,7 +76,7 @@ app.controller('userCtrl', function($scope, $http) {// , $rootElement) {
   };
   // call the mongodb get image function
   var getImage = function(){
-    $http.get("http://localhost:3333/getimage").success(function(doc) {
+    $http.get("http://connection-profilehunter.rhcloud.com/getimage").success(function(doc) {
       console.log(doc);
       $scope.imgsource=doc;
     })
@@ -86,7 +86,7 @@ app.controller('userCtrl', function($scope, $http) {// , $rootElement) {
   };
   $scope.addProfile = function() {
     console.log("Going to call add profile server");
-    $http.post('http://localhost:3033/create',$scope.expert).success(function (response) {
+    $http.post('http://connection-profilehunter.rhcloud.com/create',$scope.expert).success(function (response) {
       console.log("profile created");
       $scope.profiles = response;
     });
@@ -95,7 +95,7 @@ app.controller('userCtrl', function($scope, $http) {// , $rootElement) {
   $scope.edit = function (id) {
    // $scope.expert = data1;
     console.log(id);
-    $http.get('http://localhost:3033/getProfile/' + id).success(function (response) {
+    $http.get('http://connection-profilehunter.rhcloud.com/getProfile/' + id).success(function (response) {
       $scope.expert = response;
     });
 
@@ -104,21 +104,21 @@ app.controller('userCtrl', function($scope, $http) {// , $rootElement) {
   $scope.updateSkill = function() {
     console.log($scope.expert._id);
     console.log($scope.expert.skills);
-    $http.put('http://localhost:3033/updateSkill/' + $scope.expert._id, $scope.expert.skills).success(function (response) {
+    $http.put('http://connection-profilehunter.rhcloud.com/updateSkill/' + $scope.expert._id, $scope.expert.skills).success(function (response) {
       console.log("profile updated");
     });
   };
-  
+
   $scope.updateProfile = function() {
     console.log($scope.expert._id);
-    $http.put('http://localhost:3033/update/' + $scope.expert._id, $scope.expert).success(function (response) {
+    $http.put('http://connection-profilehunter.rhcloud.com/update/' + $scope.expert._id, $scope.expert).success(function (response) {
       console.log("profile updated");
     });
   };
   $scope.updateCertificates = function() {
     console.log($scope.expert._id);
     console.log($scope.expert.certification);
-    $http.put('http://localhost:3033/updateCertification/' + $scope.expert._id, $scope.expert.certification).success(function (response) {
+    $http.put('http://connection-profilehunter.rhcloud.com/updateCertification/' + $scope.expert._id, $scope.expert.certification).success(function (response) {
       console.log("profile updated");
     });
   };
@@ -127,7 +127,7 @@ app.controller('userCtrl', function($scope, $http) {// , $rootElement) {
     if(typeof id === 'undefined') {
       console.log("id is null while getting profile");
     }else{
-      $http.get('http://localhost:3033/getProfile/' + id).success(function (response) {
+      $http.get('http://connection-profilehunter.rhcloud.com/getProfile/' + id).success(function (response) {
         console.log(response);
         $scope.expertNew = response;
         console.log("retrieved profile");
@@ -157,7 +157,7 @@ app.controller('userCtrl', function($scope, $http) {// , $rootElement) {
     if(typeof myParam === 'undefined') {
       console.log("id is null");
     }else{
-      $http.get('http://localhost:3033/getProfile/' + myParam).success(function (response) {
+      $http.get('http://connection-profilehunter.rhcloud.com/getProfile/' + myParam).success(function (response) {
         $scope.expert = response;
       });
       getProfileImage(myParam);
@@ -169,12 +169,12 @@ app.controller('userCtrl', function($scope, $http) {// , $rootElement) {
   $scope.uploadImage = function (id) {
     //request.setRequestHeader("Content-Type", "multipart/form-data");
     console.log("Going to upload image to server");
-    $http.post('http://localhost:3222/upload?pid='+id).success(function (response) {
+    $http.post('http://connection-profilehunter.rhcloud.com/upload?pid='+id).success(function (response) {
       console.log("profile image uploaded");
     });
   };
   var getProfileImage = function (picId) {
-    $http.get("http://localhost:3222/getImage/"+ picId).success(function(doc) {
+    $http.get("http://connection-profilehunter.rhcloud.com/getImage/"+ picId).success(function(doc) {
       console.log(doc);
       $scope.imgsource=doc;
     })
@@ -190,7 +190,7 @@ app.controller('userCtrl', function($scope, $http) {// , $rootElement) {
   };
 
   var getAllImage = function () {
-    $http.get("http://localhost:3222/getAllImages").success(function(doc) {
+    $http.get("http://connection-profilehunter.rhcloud.com/getAllImages").success(function(doc) {
       console.log(doc);
       $scope.imgsource=doc;
     })
@@ -211,21 +211,21 @@ app.controller('userCtrl', function($scope, $http) {// , $rootElement) {
   $scope.searchProfile = function(id) {
     console.log(id);
     console.log($scope.selectedSearch.experience);
-    $http.get('http://localhost:3033/search/' + $scope.selectedSearch._id, $scope.selectedSearch).success(function (response) {
+    $http.get('http://connection-profilehunter.rhcloud.com/search/' + $scope.selectedSearch._id, $scope.selectedSearch).success(function (response) {
      var str = [];
       str.push(response);
       $scope.experts = str;
       console.log("profile fetched");
     });
   };
-  
+
   $scope.sendEmail = function () {
     console.log("text for emailbody : " + $scope.text);
     var list = [];
     var arr = {message : $scope.text};
     list.push(arr);
     console.log(arr);
-    $http.post('http://localhost:3033/sendEmail/' + $scope.expert.emailid, arr ).success(function (response) {
+    $http.post('http://connection-profilehunter.rhcloud.com/sendEmail/' + $scope.expert.emailid, arr ).success(function (response) {
  console.log(response);
       if(response.status == 'error'){
         $scope.message = "Error Message Not Sent";
@@ -242,7 +242,7 @@ app.controller('userCtrl', function($scope, $http) {// , $rootElement) {
     console.log("text for requirement post : " + $scope.post);
     // list.push(arr);
     //console.log(arr);
-    $http.post('http://localhost:3044/createPost' , $scope.post ).success(function (response) {
+    $http.post('http://connection-profilehunter.rhcloud.com/createPost' , $scope.post ).success(function (response) {
       console.log(response);
       if(response.status == 'error'){
         $scope.message = "Error while requirement post";
@@ -265,7 +265,7 @@ app.controller('userCtrl', function($scope, $http) {// , $rootElement) {
   $scope.getAllPost = function () {
     console.log("fetching all the requirement post");
 
-    $http.get('http://localhost:3044/getAll').success(function (response) {
+    $http.get('http://connection-profilehunter.rhcloud.com/getAll').success(function (response) {
 
       $scope.posts = response;
       getDate();
