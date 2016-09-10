@@ -144,4 +144,4 @@ function getImages(imageDir, callback) {
         callback(err, files);
     });
 };
-app.listen('3222');
+//app.listen('3222');
