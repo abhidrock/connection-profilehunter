@@ -2,7 +2,7 @@
 //  OpenShift sample Node application
 var express = require('express');
 var app = express();
-var fs      = require('fs');
+var fs  = require('fs');
 var mongojs = require('mongojs');
 var dbName = "/connection";
 var connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +  process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" + process.env.OPENSHIFT_MONGODB_DB_HOST + dbName;
@@ -11,7 +11,6 @@ var bodyParser = require('body-parser');
 var fileUpload = require('express-fileupload');
 var nodemailer = require('nodemailer');
 var path = require('path');
-var fs = require('fs');
 var busboy = require('connect-busboy');
 
 
@@ -384,6 +383,8 @@ var SampleApp = function() {
         });
 
         self.app.use(bodyParser.json());
+
+        app.use(busboy());
 
         self.app.get('/profiles', self.routes['/profiles']);
 
