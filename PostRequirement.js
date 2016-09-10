@@ -50,4 +50,4 @@ app.post('/createPost', function(req, res){
     });
 });
 
-//app.listen(3044);
+app.listen(3044);
