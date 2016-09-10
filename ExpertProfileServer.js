@@ -2,7 +2,10 @@ var express = require('express');
 
 var app = express();
 var mongojs = require('mongojs');
-var db = mongojs('expertprofiles', [ 'expertprofiles']);
+var dbName = "/connection";
+var connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +  process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" + process.env.OPENSHIFT_MONGODB_DB_HOST + dbName;
+var db = mongojs(connection_string, ['expertprofilespost']);
+//var db = mongojs('expertprofiles', [ 'expertprofiles']);
 var bodyParser = require('body-parser');
 
 var nodemailer = require('nodemailer');
