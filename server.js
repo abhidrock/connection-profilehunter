@@ -11,7 +11,7 @@ var bodyParser = require('body-parser');
 var fileUpload = require('express-fileupload');
 var nodemailer = require('nodemailer');
 var path = require('path');
-//var busboy = require('connect-busboy');
+var busboy = require('connect-busboy');
 
 
 /**
@@ -244,7 +244,7 @@ var SampleApp = function() {
           });
         };
 
-/*        self.routes['/upload'] = function(req, res) {
+       self.routes['/upload'] = function(req, res) {
           var picId = null;
           var fstream;
           req.pipe(req.busboy);
@@ -329,14 +329,14 @@ var SampleApp = function() {
                           var base64Image = original_data.toString('base64');
                           imageLists.push(base64Image);
                       });*/
-                  //}
-                  //res.writeHead(200, {'Content-type':'text/html'});
-                  //console.log("base64 converted imgs : ",imageLists);
-                //  res.send(imageLists);
-              //});
+                  }
+                  res.writeHead(200, {'Content-type':'text/html'});
+                  console.log("base64 converted imgs : ",imageLists);
+                  res.send(imageLists);
+              });
 
               //get the list of jpg files in the image dir
-              /*function getImages(imageDir, callback) {
+              function getImages(imageDir, callback) {
                   var fileType = '.jpg',
                       files = [], i;
                   fs.readdir(imageDir, function (err, list) {
@@ -349,7 +349,7 @@ var SampleApp = function() {
                       callback(err, files);
                   });
               };
-        };*/
+        };
 
 
         self.routes['/asciimo'] = function(req, res) {
@@ -384,7 +384,7 @@ var SampleApp = function() {
 
         self.app.use(bodyParser.json());
 
-        //app.use(busboy());
+        app.use(busboy());
 
         self.app.get('/profiles', self.routes['/profiles']);
 
@@ -406,11 +406,11 @@ var SampleApp = function() {
 
         self.app.post('/createPost', self.routes['/createPost']);
 
-        /*self.app.post('/upload', self.routes['/upload']);
+        self.app.post('/upload', self.routes['/upload']);
 
         self.app.get('/getImage/:id', self.routes['/getImage/:id']);
 
-        self.app.get('/getAllImages', self.routes['/getAllImages']);*/
+        self.app.get('/getAllImages', self.routes['/getAllImages']);
 
           //  Add handlers for the app (from the routes).
         /*for (var r in self.routes) {
