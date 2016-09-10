@@ -402,7 +402,7 @@ var SampleApp = function() {
 
         self.app.post('/sendEmail/:id', self.routes['/sendEmail/:id']);
 
-        self.app.get('getAllPost', self.routes['getAllPost']);
+        self.app.get('/getAllPost', self.routes['/getAllPost']);
 
         self.app.post('/createPost', self.routes['/createPost']);
 
