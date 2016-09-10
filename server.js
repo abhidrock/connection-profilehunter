@@ -98,10 +98,7 @@ var SampleApp = function() {
      */
     self.createRoutes = function() {
         self.routes = {
-            var mongojs = require('mongojs');
-            var dbName = "/connection";
-            var connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +  process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" + process.env.OPENSHIFT_MONGODB_DB_HOST + dbName;
-            var db = mongojs(connection_string, ['expertprofilespost']);
+            
          };
 
         self.routes['/asciimo'] = function(req, res) {
