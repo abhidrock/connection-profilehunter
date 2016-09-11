@@ -265,7 +265,7 @@ app.controller('userCtrl', function($scope, $http) {// , $rootElement) {
   $scope.getAllPost = function () {
     console.log("fetching all the requirement post");
 
-    $http.get('http://connection-profilehunter.rhcloud.com/getAll').success(function (response) {
+    $http.get('http://connection-profilehunter.rhcloud.com/getAllPost').success(function (response) {
 
       $scope.posts = response;
       getDate();
