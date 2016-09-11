@@ -1,2 +1,2 @@
-# ExpertProfileProject
+# Connection Profile Hunter
 Hunting Experts
