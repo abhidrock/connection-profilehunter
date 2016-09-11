@@ -73,7 +73,7 @@
     <div class="col-sm-12 animate-enter">
         <div class="well slideanim slide">
             <form>
-                <textarea name="status" ng-model="post.requirement" rows="3" cols="150"></textarea>
+                <textarea class="form-control" name="status" ng-model="post.requirement" rows="3"></textarea>
                 <br>
                 <!--<input type="hidden" ng-model="post.datetime" value="{{dateTime}}">-->
                 <button type="button" class="btn btn-success" ng-click="sendRequirement()">
@@ -84,19 +84,6 @@
     </div>
     <div class="col-sm-12">
         <div class="well slideanim slide" ng-repeat="post in posts | orderBy : '-datetime'">
-           <!-- <table class="">
-                <tr>
-                    <td>
-                        <img src="images/default_profile.jpg" class="img-circle" width="50" height="50" alt="Profile" />
-                    </td>
-                    <td> Date : </td>
-                    <td><span><strong>{{post.datetime}}</strong></span></td>
-                    <td> Message : </td>
-                    <td>
-                        <span><strong>{{post.requirement}}</strong></span>
-                    </td>
-                </tr>
-            </table>-->
              <div class="list-inline">
                 <p> <img src="images/default_profile.jpg" class="img-circle" width="50" height="50" alt="Profile" /></p>
                 <p>Date :
