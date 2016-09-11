@@ -236,7 +236,7 @@ var SampleApp = function() {
               datetime: dateTime};
           console.log(collection);
 
-          db.expertprofilespost.insert(collection, function(err, doc){
+          db.collection('expertprofilespost').insert(collection, function(err, doc){
               if(err){
                   console.log(err);
               }
