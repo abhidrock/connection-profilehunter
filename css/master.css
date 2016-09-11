@@ -57,10 +57,50 @@
   background-color: #eeeeea;
 }
 
-.item{
-    background-color:#cc88cc;
+.carousel{
+  width:100%;
+  max-height: 400px !important;
+}
+
+.item {
+    background-color:#555555;
     display:block;
 }
+
+#headline {
+    font-family:"Arial Black";
+    color: #efeda5;
+    font-size: 0.8em;
+    display: inline-block;
+    text-shadow: 2px 2px 0 black, 2px -2px 0 black, -2px 2px 0 black, -2px -2px 0 black;
+    padding: 0;
+    margin: 0;
+  }
+
+  #newsitem {
+      font-family:"Arial Black";
+      color: #d9edf7;
+      font-size: 1.8em;
+      display: inline-block;
+      text-shadow: 1px 1px 0 black, 1px -1px 0 black, -1px 1px 0 black, -1px -1px 0 black;
+      padding: 0;
+      margin: 0;
+    }
+
+  .main-text
+  {
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    color: #fff;
+    text-decoration: overline;
+    font-size: 50px;
+    /*  background-color: rgba(0, 0, 0, 0.65);*/
+  }
+
+.slider-size {
+    height: 200px; /* This is your slider height */
+  }
 
 .carousel-caption{
     color:#000;
