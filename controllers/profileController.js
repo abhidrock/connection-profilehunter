@@ -247,7 +247,7 @@ app.controller('userCtrl', function($scope, $http) {// , $rootElement) {
       if(response.status == 'error'){
         $scope.message = "Error while requirement post";
       }else{
-        //$scope.posts = response;
+        $scope.posts.push(response);
         console.log("post requirement successful");
       }
 
