@@ -53,13 +53,20 @@
 <div id="this-carousel-id" class="carousel slide"><!-- class of slide for animation -->
   <div class="carousel-inner">
   <div class="item active"><!-- class of active since it's the first item -->
-    <div class="carousel-caption">
-    <p>Caption text here asdasd asdada asdad asdada adadlkjhk vzvzv uoosa fzvzv zxvzvz ffsbxnjkn sjdfsjhf sfafa</p>
+    <div class="slider-size">
+    <div class="carousel-caption main-text">
+      <h1 id="headline">REQUIREMENTS</h1>
+    </div>
     </div>
   </div>
-  <div class="item">
+  <div class="item" ng-repeat="post in posts | orderBy : '-datetime'">
+    <div class="slider-size">
     <div class="carousel-caption">
-    <p>Caption text here adaad asfws fsgsg erww dgsgsg sdsgsg fsfs asfaf afasfaf aafasf afafaf</p>
+      <p id="newsitem">Date :
+          {{post.datetime}}</p><br>
+      <p id="newsitem">Message :
+          {{post.requirement}}</p>
+    </div>
     </div>
   </div>
   <!-- /.carousel-inner -->
@@ -68,11 +75,12 @@
   <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
   <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
 </div><!-- /.carousel -->
+</div>
 <br><br>
 <div class="row">
     <div class="col-sm-12 animate-enter">
         <div class="well slideanim slide">
-            <form>
+            <form action="post.html">
                 <textarea class="form-control" name="status" ng-model="post.requirement" rows="3"></textarea>
                 <br>
                 <!--<input type="hidden" ng-model="post.datetime" value="{{dateTime}}">-->

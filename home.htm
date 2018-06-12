@@ -26,11 +26,6 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#appNavBarSearch">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
         </div>
        <!-- &lt;!&ndash; navBar For Multi Search &ndash;&gt;
         <div class="navbar-right">
@@ -57,27 +52,25 @@
         <div class="collapse navbar-collapse" id="appNavBar">
           <form class="navbar-form navbar-right" role="search">
           <div class="form-group input-group">
-            <!--<div class="input-group-btn" >
-              <select class="form-control btn-success" ng-model="property">
+            <div class="input-group-btn" >
+               <!--<select class="form-control btn-success" ng-model="property">
                 <option>name</option>
                 <option>skills</option>
                 <option>profile</option>
-              </select>
+              </select> -->
+              <input type="text" class="form-control" placeholder="Search Any.." ng-model="expert.$">
+              <input type="text" class="form-control" placeholder="Profile only.." ng-model="expert.profile">
+              <input type="text" class="form-control" placeholder="Exprience only.." ng-model="expert.experience">
+              <!--<select class="form-inline" ng-model="expert.experience" ng-options="expert.experience for expert in experts | filter : expert.profile">
+                <option value="">Select</option>
+              </select>-->
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#AdvSearchModal">
+                  <span class="glyphicon glyphicon-search"></span>
+                </button>
+              </span>
             </div>
-            <input class="form-control" placeholder="Enter here" ng-model="search[property]">-->
-
-
-            <input type="text" class="form-inline" placeholder="Search Any.." ng-model="expert.$" > :
-            <input type="text" class="form-inline" placeholder="Profile only.." ng-model="expert.profile"> :
-            <input type="text" class="form-inline" placeholder="Exprience only.." ng-model="expert.experience"> :
-            <!--<select class="form-inline" ng-model="expert.experience" ng-options="expert.experience for expert in experts | filter : expert.profile">
-              <option value="">Select</option>
-            </select>-->
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#AdvSearchModal">
-                <span class="glyphicon glyphicon-search"></span>
-              </button>
-            </span>
+            <!--<input class="form-control" placeholder="Search Any.." ng-model="expert.$"> -->
            <!-- <p class="navbar-right">
               <button class="btn btn-block" data-toggle="modal" data-target="#AdvSearchModal" ng-click="#">Advance Search</button>
             </p>-->
